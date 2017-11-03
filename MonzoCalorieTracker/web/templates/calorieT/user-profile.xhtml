@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+        <title>Monzo Calorie Tracker | Perfil</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="../../resources/css/estilos.css"/>
+    </h:head>
+    <h:body>
+        <header>
+            <img src="../../resources/img/Monzo-logo2.svg" alt="Monzo Logo"/>
+            <h1>Monzo</h1>
+            <nav>
+                <ul>
+                    <li><h:outputLink value="../../templates/index.xhtml">Logout</h:outputLink></li>
+                    <li><h:outputLink value="../../templates/registro/data-modification.xhtml">Modificar Datos</h:outputLink></li>
+                    <li><h:outputLink value="user-profile.xhtml">Home</h:outputLink></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section id="contenedor">
+            <div class="summary">
+                <h3>BMI (&Iacute;ndice de Masa Corporal)</h3>
+                <p>Tus estad&iacute;sticas son:</p>
+                <h:outputText class="numero" value="#{manageCalorieTracker.calT.budget}"></h:outputText>
+                <p>Tu categor&iacute;a: <h:outputText id="categoriaBMI" value="#{managePersona.categoriaBMI}"></h:outputText></p>
+            </div>
+            <div class="summary">
+                <h3>BMR (Tasa Metab&oacute;lica Basal)</h3>
+                <p>Debes consumir aproximadamente:</p>
+                <h:outputText class="numero" value="#{manageCalorieTracker.calT.budget}"></h:outputText><br/>
+                <p>calor&iacute;as</p>
+            </div>
+            <hr class="pill"/>
+            <div id="calTracker">
+                <h2>TRACKER</h2><br/>
+                <h:panelGrid columns="7" cellpadding="10" id="trackerGrid">  
+                    <h:outputLabel value="Budget"></h:outputLabel><img class="symbol" src="../../resources/img/remove.svg" alt="minus sign"/>
+                    <h:outputLabel value="Comida"></h:outputLabel><img class="symbol" src="../../resources/img/add.svg" alt="add sign"/>
+                    <h:outputLabel value="Ejercicio"></h:outputLabel><img class="symbol" src="../../resources/img/equal.svg" alt="equal sign"/>
+                    <h:outputLabel value="Remaining"></h:outputLabel>
+            
+                    <h:outputLabel id="budget" value="#{manageCalorieTracker.calT.budget}"></h:outputLabel><span></span>
+                    <h:outputLabel value="#{manageCalorieTracker.calT.totalCal}"></h:outputLabel><span></span>          
+                    <h:outputLabel value="#{manageCalorieTracker.calT.ejercicio}"></h:outputLabel><span></span>           
+                    <h:outputLabel value="#{manageCalorieTracker.calT.remaining}"></h:outputLabel>
+                </h:panelGrid>
+            </div>
+            <br/>
+            <h:commandButton class="boton" value="Añadir Comida">
+                <f:passThroughAttribute name="data-toggle" value="modal"></f:passThroughAttribute>
+                <f:passThroughAttribute name="data-target" value="#modal"></f:passThroughAttribute>
+            </h:commandButton>
+            
+            <!-- modal -->
+            <div class="modal fade" id="modal" role="dialog">
+                <div class="modal-dialog">
+                    <!--contenido-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Agregar Comida</h4>
+                        </div>
+                        <div class="modal-body" id="addFood">
+                            <p>Llena los campos con la informaci&oacute;n adecuada para agregar una nueva comida.</p>
+                            <h:form>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel for="nameComida">Nombre*:</h:outputLabel>
+                                    <h:inputText id="nameComida" value="#{manageComida.comida.nombreComida}" required="true" requiredMessage="Requerido"></h:inputText>
+                                    <h:message for="nameComida"></h:message>
+                                    
+                                    <h:outputLabel for="serving">Porci&oacute;n (Ej. Taza, vaso):</h:outputLabel>
+                                    <h:inputText id="serving" value="#{manageComida.comida.serving}"></h:inputText>
+                                    
+                                    <h:outputLabel for="servingSize">Tama&ntilde;o de la Porci&oacute;n:</h:outputLabel>
+                                    <h:inputText id="servingSize" value="#{manageComida.comida.servingSize}"></h:inputText>
+                                    <h:message for="servingSize"></h:message>
+                                    
+                                    <h:outputLabel for="calorias">Calor&iacute;as*:</h:outputLabel>
+                                    <h:inputText id="calorias" value="#{manageComida.comida.calorias}" required="true" requiredMessage="Requerido"></h:inputText>
+                                    <h:message for="calorias"></h:message>
+                                    
+                                    <h:outputLabel for="carbs">Carbohidratos:</h:outputLabel>
+                                    <h:inputText id="carbs" value="#{manageComida.comida.carbohidratos}"></h:inputText>
+                                    
+                                    <h:outputLabel for="proteinas">Prote&iacute;nas:</h:outputLabel>
+                                    <h:inputText id="proteinas" value="#{manageComida.comida.proteinas}"></h:inputText>
+                                    
+                                    <h:outputLabel for="grasas">Grasas (Totales):</h:outputLabel>
+                                    <h:inputText id="grasas" value="#{manageComida.comida.grasas}"></h:inputText>
+                                    
+                                    <h:outputLabel for="sodio">Sodio:</h:outputLabel>
+                                    <h:inputText id="sodio" value="#{manageComida.comida.sodio}"></h:inputText>
+                                    
+                                    <h:outputLabel for="azucar">Az&uacute;car:</h:outputLabel>
+                                    <h:inputText id="azucar" value="#{manageComida.comida.azucar}"></h:inputText>
+                                    
+                                    <div class="modal-footer">
+                                        <h:commandButton class="boton" value="AGREGAR"></h:commandButton>
+                                    </div>
+                                </h:panelGrid>
+                            </h:form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </h:body>
+</html>
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="viewport" content="width=device-width,initial-scalw=1.0,user-scalable=no"/>
+        <title>Registro | Monzo Calorie Tracker</title>
+        <link rel="stylesheet" href="../../resources/css/estilos.css"/>
+    </h:head>
+    <h:body>
+        <header>
+            <img src="../../resources/img/Monzo-logo2.svg" alt="Monzo Logo"/>
+            <h1>Monzo</h1>
+        </header>
+        
+        <section id="contenedor">
+            <h2>Modificar Datos</h2>
+            <p>Efect&uacute;a los cambios necesarios y luego presiona el bot&oacute;n para guardar la informaci&oacute;n.</p>
+            <h:form id="registro-form" class="form">
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="username">Nombre Usuario*: </h:outputLabel>
+                    <h:inputText id="username" value="#{managePersona.user.nick}" required="true" requiredMessage="El nombre de usuario es obligatorio" validatorMessage="La longitud debe ser mayor a 8">
+                        <f:validateLength minimum="8" maximum="50"></f:validateLength>
+                    </h:inputText>
+                    <h:message for="username"></h:message>
+                
+                    <h:outputLabel for="name">Nombre*:</h:outputLabel>
+                    <h:inputText id="name" value="#{managePersona.user.nombre}" required="true" requiredMessage="El nombre es obligatorio"></h:inputText>
+                    <h:message for="name"></h:message>
+                
+                    <h:outputLabel for="password">Password*: </h:outputLabel>
+                    <h:inputSecret id="password" value="#{managePersona.user.password}" required="true" requiredMessage="La contraseña es obligatoria" validatorMessage="La longitud debe ser mayor a 5 caracteres">
+                        <f:validateLength minimum="5" maximum="25"></f:validateLength>
+                    </h:inputSecret>
+                    <h:message for="password"></h:message>
+                
+                    <h:outputLabel for="age">Edad*:</h:outputLabel>
+                    <h:inputText id="age" value="#{managePersona.user.edad}" required="true" requiredMessage="Este campo es obligatorio" validatorMessage="La edad no puede ser cero ni mayor a 110">
+                        <f:validateLongRange minimum="0" maximum="110"></f:validateLongRange>
+                    </h:inputText>
+                    <h:message for="age"></h:message>
+                
+                    <h:outputLabel for="weight">Peso (kg)*:</h:outputLabel>
+                    <h:inputText id="weight" value="#{managePersona.user.peso}" required="true" requiredMessage="Este campo es obligatorio" validatorMessage="El peso no puede ser cero o menor">
+                    <f:validateLongRange minimum="0"></f:validateLongRange>
+                    </h:inputText>
+                    <h:message for="weight"></h:message>
+                
+                    <h:outputLabel for="height">Altura (cm)*:</h:outputLabel>
+                    <h:inputText id="height" value="#{managePersona.user.altura}" required="true" requiredMessage="Este campo es obligatorio" validatorMessage="La altura no puede ser cero o menor">
+                        <f:validateLongRange minimum="0"></f:validateLongRange>
+                    </h:inputText>
+                    <h:message for="height"></h:message>
+                
+                    <h:outputLabel for="gender">Sexo: </h:outputLabel>
+                    <h:selectOneRadio id="gender" value="#{managePersona.user.sexo}" required="true" requiredMessage="Este campo es obligatorio">
+                        <f:selectItem itemValue="Hombre" itemLabel="Hombre"/>
+                        <f:selectItem itemValue="Mujer" itemLabel="Mujer"/>
+                    </h:selectOneRadio>
+                    <h:message for="gender"></h:message>
+                
+                    <h:outputLabel for="objetivo"></h:outputLabel>
+                    <h:selectOneMenu id="objetivo" value="#{managePersona.user.objetivo}" required="true" requiredMessage="Este campo es obligatorio">
+                        <f:selectItem itemValue="BajarPeso" itemLabel="Bajar de Peso"/>
+                        <f:selectItem itemValue="MantenerPeso" itemLabel="Mantener Peso"/>
+                        <f:selectItem itemValue="GanarPeso" itemLabel="Ganar Peso"/>
+                    </h:selectOneMenu>
+                <h:message for="objetivo"></h:message>
+                <h:commandButton class="boton" value="Modificar"></h:commandButton>
+                </h:panelGrid>
+                
+            </h:form>
+        </section>
+        
+    </h:body>
+</html>
+
