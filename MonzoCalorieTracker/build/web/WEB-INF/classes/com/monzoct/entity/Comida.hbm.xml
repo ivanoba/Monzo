@@ -40,14 +40,11 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-    <class name="com.monzoct.model.Comida" table="comida" catalog="db_calorie_tracker" optimistic-lock="version">
-        <id name="codigoComida" type="int">
-      <column name="codigoComida"/>
-      <generator class="identity"/>
+    <class name="com.monzoct.model.Comida" table="Comida" catalog="db_monzo_ct" optimistic-lock="version">
+        <id name="codigoComida" type="java.lang.Integer">
+            <column name="codigoComida"/>
+            <generator class="increment"/>
         </id>
-        <many-to-one name="comida" class="com.monzoct.model.CalorieTracker" lazy="false">
-            <column name="codigoTracker" not-null="true" />
-        </many-to-one>
         <property name="nombreComida" type="string">
             <column name="nombreComida" length="100" not-null="true" />
         </property>
@@ -75,5 +72,8 @@ Contributor(s):
         <property name="azucar" type="double">
             <column name="azucar" not-null="true" />
         </property>
+        <many-to-one name="codigo" class="com.monzoct.model.CalorieTracker" lazy="false">
+            <column name="codigoTracker" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

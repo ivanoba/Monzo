@@ -40,34 +40,28 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="com.monzoct.model.CalorieTracker" table="calorietracker" catalog="db_calorie_tracker" optimistic-look="version">
-      <id name="codigo" type="java.lang.Integer">
-          <column name="codigo" />
-          <generator class="identity" />
-      </id>
-      <many-to-one name="persona" class="com.monzoct.model.Persona" lazy="false">
-          <column name="nickPersona" not-null="true"/>
-      </many-to-one>
-      <property name="budget" type="double">
-          <column name="budget" not-null="true" />
-      </property>
-      <property name="totalCal" type="double">
-          <column name="totalCal" not-null="true" />
-      </property>
-      <property name="ejercicio" type="double">
-          <column name="ejercicio" not-null="true" />
-      </property>
-      <property name="remaining" type="double">
-          <column name="remaining" not-null="true" />
-      </property>
-      <property name="time24h" type="java.util.Date">
-          <column name="time24h" not-null="true" />
-      </property>
-      <set name="comida" table="Comida" inverse="true" lazy="false">
-          <key>
-              <column name="codigoTracker" not-null="true" />
-          </key>
-          <one-to-many class="com.monzoct.model.Comida"/>
-      </set>
+  <class catalog="db_calorie_tracker" name="com.monzoct.model.CalorieTracker" optimistic-look="version" table="calorietracker">
+    <id name="codigoTracker" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="increment"/>
+    </id>
+    <property name="budget" type="double">
+      <column name="budget" not-null="true"/>
+    </property>
+    <property name="totalCal" type="double">
+      <column name="totalCal" not-null="true"/>
+    </property>
+    <property name="ejercicio" type="double">
+      <column name="ejercicio" not-null="true"/>
+    </property>
+    <property name="remaining" type="double">
+      <column name="remaining" not-null="true"/>
+    </property>
+    <property name="time24h" type="java.util.Date">
+      <column name="time24h" not-null="true"/>
+    </property>
+    <many-to-one class="com.monzoct.model.Persona" lazy="false" name="nick">
+      <column name="nickPersona" not-null="true"/>
+    </many-to-one>
   </class>
 </hibernate-mapping>

@@ -24,7 +24,7 @@ and open the template in the editor.
             <p>Bienvenido a Monzo, llena los siguientes campos con tu informaci&oacute;n para que puedas iniciar tu aventura hacia una vida saludable.</p>
             <h:form id="registro-form" class="form">
                 <h:panelGrid columns="1">
-                    <h:outputLabel for="username">Nombre Usuario*: </h:outputLabel>
+                    <h:outputLabel for="username">Nombre de Usuario*: </h:outputLabel>
                     <h:inputText id="username" value="#{managePersona.user.nick}" required="true" requiredMessage="El nombre de usuario es obligatorio" validatorMessage="La longitud debe ser mayor a 8">
                         <f:validateLength minimum="8" maximum="50"></f:validateLength>
                     </h:inputText>

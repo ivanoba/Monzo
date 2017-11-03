@@ -7,9 +7,6 @@ package com.monzoct.model;
 
 import java.util.Date;
 import com.monzoct.model.Persona;
-import java.util.HashSet;
-import java.util.Set;
-
 
 /**
  *
@@ -17,40 +14,38 @@ import java.util.Set;
  */
 public class CalorieTracker {
     //VIC
-    private Integer codigo;
+    private Integer codigoTracker;
     private double budget;
     private double totalCal;
     private double ejercicio;
     private double remaining;
     private Date time24h;
-    private Persona nickPersona;
-    private Set comida = new HashSet(0);
+    private Persona codigoP;
     
     //CONSTRUCTORES
     public CalorieTracker() {
-        codigo = 0;
+        codigoTracker = 0;
         budget = 0;
         totalCal = 0;
         ejercicio = 0;
         remaining = 0;
         time24h = new Date();
-        nickPersona = new Persona();
+        codigoP = new Persona();
     }
     
-    public CalorieTracker(Integer codigo, double budget, double totalCal, double ejercicio, double remaining, Date datetime, Persona nickPersona, Set comida) {
-        this.codigo = codigo;
+    public CalorieTracker(Integer codigo, double budget, double totalCal, double ejercicio, double remaining, Date datetime, Persona nickPersona) {
+        this.codigoTracker = codigo;
         this.budget = budget;
         this.totalCal = totalCal;
         this.ejercicio = ejercicio;
         this.remaining = remaining;
         this.time24h = datetime;
-        this.nickPersona = nickPersona;
-        this.comida = comida;
+        this.codigoP = nickPersona;
     }
     
     //Getter
-    public Integer getCodigo() {
-        return codigo;
+    public Integer getCodigoTracker() {
+        return codigoTracker;
     }
 
     public double getBudget() {
@@ -73,13 +68,13 @@ public class CalorieTracker {
         return time24h;
     }
 
-    public Persona getNickPersona() {
-        return nickPersona;
+    public Persona getCodigoP() {
+        return codigoP;
     }
     
     //Setter
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setCodigoTracker(Integer codigoTracker) {
+        this.codigoTracker = codigoTracker;
     }
 
     public void setBudget(double budget) {
@@ -102,18 +97,7 @@ public class CalorieTracker {
         this.time24h = time24h;
     }
 
-    public void setNickPersona(Persona nickPersona) {
-        this.nickPersona = nickPersona;
+    public void setCodigoP(Persona codigoP) {
+        this.codigoP = codigoP;
     }
-
-    public Set getComida() {
-        return comida;
-    }
-
-    public void setComida(Set comida) {
-        this.comida = comida;
-    }
-    
-    
-    
 }

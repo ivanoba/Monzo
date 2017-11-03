@@ -133,13 +133,19 @@ p {
     width: 10%;
 }
 
+#set-botones {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
 
 /*Forms*/
 #addFood form {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    
     width: 55%;
 }
 
@@ -174,7 +180,7 @@ input[type=text]:focus,input[type=password]:focus, select:focus {
     padding: 0.5em;
     margin: auto;
     display: block;
-    width: 50%;
+    width: 40%;
     border-radius: 7px;
     background: crimson;
     color: whitesmoke;
@@ -187,6 +193,22 @@ input[type=text]:focus,input[type=password]:focus, select:focus {
 .boton:hover {
     background-color: #a9063b;
     box-shadow: black 2px 2px;
+}
+
+#boton-comida {
+    float: left;
+    display: inline-block;
+    margin: 1em;
+}
+
+#boton-ejercicio {
+    background: #4375B8;
+    float: right;
+    margin: 1em;
+}
+
+#boton-ejercicio:hover {
+    background: #4330c1;
 }
 
 hr {

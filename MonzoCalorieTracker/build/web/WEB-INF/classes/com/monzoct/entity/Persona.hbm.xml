@@ -40,21 +40,21 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="com.monzoct.model.Persona" table="persona" catalog="db_calorie_tracker" optimistic-lock="version">
-    <id name="nick" type="string">
+  <class name="com.monzoct.model.Persona" table="Persona" catalog="db_calorie_tracker" optimistic-lock="version">
+    <id name="nick" type="java.lang.String">
       <column name="nick"/>
       <generator class="identity"/>
     </id>
-    <property name="nombre" type="string">
+    <property name="nombre" type="java.lang.String">
         <column name="nombre" length="50" not-null="true" />
     </property>
-    <property name="password" type="string">
+    <property name="password" type="java.lang.String">
         <column name="contrasena" length="25" not-null="true" />
     </property>
-    <property name="sexo" type="string">
+    <property name="sexo" type="java.lang.String">
         <column name="sexo" length="50" not-null="true" />
     </property>
-    <property name="objetivo" type="string">
+    <property name="objetivo" type="java.lang.String">
         <column name="objetivo" length="50" not-null="true" />
     </property>
     <property name="edad" type="int">
@@ -72,11 +72,5 @@ Contributor(s):
     <property name="bmr" type="double">
         <column name="bmr" not-null="true" />
     </property>
-    <set name="calorieTracker" table="calorieTracker" inverse="true" lazy="false">
-        <key>
-            <column name="nickPersona" not-null="true" />
-        </key>
-        <one-to-many class="com.monzoct.model.CalorieTracker" />
-    </set>
   </class>
 </hibernate-mapping>

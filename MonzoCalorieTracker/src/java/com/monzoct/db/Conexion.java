@@ -5,28 +5,29 @@
  */
 package com.monzoct.db;
 
-import com.monzoct.model.Persona;
-import com.monzoct.model.Comida;
-import com.monzoct.model.CalorieTracker;
 import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.stat.Statistics;
 
-
+import com.monzoct.model.*;
+import javax.inject.Named;
 /**
  *
  * @author M I C I F U S
  */
+
+@Named(value = "conexion")
 public class Conexion {
     private SessionFactory session;
     private static Conexion instancia = null;
     private static Statistics estadisticas;
     
     public void setInstancia() {
-        Conexion.instancia = null;
+        this.instancia = null;
     }
     
     public Conexion() {
@@ -44,6 +45,7 @@ public class Conexion {
         }
     }
     
+    //cerrar la sesion
     public void closeSession() throws HibernateException {
         try {
             if(session.isClosed() == false | session.getCurrentSession().isOpen()) {
@@ -56,7 +58,7 @@ public class Conexion {
     }
     
     public Statistics getEstadisticas() {
-        return Conexion.estadisticas;
+        return this.estadisticas;
     }
     
     public synchronized static Conexion getInstancia() {
@@ -83,7 +85,7 @@ public class Conexion {
         session.getTransaction().commit();
         return listado;
     }
-    
+    /*
     @SuppressWarnings("unchecked")
     public List<Persona> getPersona() {
         Session session = this.getSession();
@@ -112,7 +114,7 @@ public class Conexion {
         listado = session.createQuery("From calorieTracker").list();
         session.getTransaction().commit();
         return listado;
-    }
+    }*/
     
     public void modificar(Object obj) {
         Session session = this.getSession();
@@ -128,21 +130,21 @@ public class Conexion {
         session.getTransaction().commit();
     }
     
-    public Object buscar(Class<?> classX, int ID) {
-        Session session = this.getSession();
-        session.beginTransaction();
-        Object objeto = session.get(classX, ID);
-        session.getTransaction().commit();
-        return objeto;
-    }
-    
-    public Object buscar(Class<?> classX, String ID) {
-        Session session = this.getSession();
-        session.beginTransaction();
-        Object objeto = session.get(classX, ID);
-        session.getTransaction().commit();
-        return objeto;
-    }
+    public Object Buscar(Class<?> classX, int ID) {
+		Session session = this.getSession();
+		session.beginTransaction();
+		Object objeto=session.get(classX, ID);
+		session.getTransaction().commit();
+		return objeto;
+	}
+
+	public Object Buscar(Class<?> classX, String ID) {
+		Session session = this.getSession();
+		session.beginTransaction();
+		Object objeto=session.get(classX, ID);
+		session.getTransaction().commit();
+		return objeto;
+	}
     
     public void eliminar(Object obj) {
         Session session = getSession();
@@ -152,6 +154,22 @@ public class Conexion {
     }
     
     public Persona autenticarPersona(String usuario, String password) {
+        Persona usr = new Persona();
+        Session sesion = this.getSession();
+        sesion.beginTransaction();
+        
+        try {
+            usr = (Persona)hacerConsulta("From Persona u WHERE u.nombre='" + usuario + "' OR u.nick='" + usuario + "' AND u.contrasena='" + password + "'").get(0);
+            if(password.equals(usr.getPassword())) {
+                
+            } else {
+                usr.setNick("n");
+            }
+        } catch(IndexOutOfBoundsException aiobs) {
+            
+        }
+        return usr;
+        /*
         List<Object> lista = null;
         Persona user;
         user = null;
@@ -159,7 +177,11 @@ public class Conexion {
         if(!lista.isEmpty()) {
             user = (Persona)lista.get(0);
         }
-        return user;
+        return user;*/
+    }
+
+    public CalorieTracker Buscar(Class<CalorieTracker> aClass, CalorieTracker idCalorieTracker) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

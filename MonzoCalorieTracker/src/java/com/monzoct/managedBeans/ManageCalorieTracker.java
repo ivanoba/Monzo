@@ -5,6 +5,7 @@
  */
 package com.monzoct.managedBeans;
 
+import com.monzoct.db.Conexion;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
@@ -15,6 +16,11 @@ import java.io.Serializable;
 import java.util.Date;
 import com.monzoct.model.CalorieTracker;
 import com.monzoct.model.Persona;
+import java.io.IOException;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,6 +30,12 @@ import com.monzoct.model.Persona;
 @ManagedBean
 @SessionScoped
 public class ManageCalorieTracker implements Serializable {
+    private static final String CT_PAGE_REDIRECT = "templates/calorieT/user-profile.xhtml?faces-redirect=true";
+    
+    FacesContext context = FacesContext.getCurrentInstance();
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sesion = request.getSession(true);
+    
     private CalorieTracker calT;
     
     public ManageCalorieTracker() {
@@ -43,30 +55,27 @@ public class ManageCalorieTracker implements Serializable {
     }
     
     //Metodos
-
-    
-    public double CalorieTracker() {
+    public String CalorieTracker() {
         double fooRemaining;
         fooRemaining = 0;
         fooRemaining = calT.getBudget() - calT.getTotalCal() + calT.getEjercicio();
-        
+        calT.setRemaining(fooRemaining);
 
-
-        //la condicion del if es que quiere que cuando el boton de agregar, o eliminar se
-        //oprima, entonces fooRemaining sume o reste
-        /*double remain;
-        remain = 0;
-        
-        if(manejadorC.equals(manejadorC.AgregarComida())) {
-            remain = manejadorP.BudgetObjetivo() - manejadorC.AgregarComida() + exercise;
-        } else if(manejadorC.equals(manejadorC.AnularComida())) {
-            remain = manejadorP.BudgetObjetivo() + manejadorC.AnularComida() + exercise;
-        }
-        
-        return remain;*/
-        return fooRemaining;
+        return CT_PAGE_REDIRECT;
     }
     
-    
-    
+    public String AddCalorieTracker() throws IOException, ServletException {
+        CalorieTracker ct;
+        ct = new CalorieTracker(
+                null,
+                calT.getBudget(),
+                calT.getTotalCal(),
+                calT.getEjercicio(),
+                calT.getRemaining(),
+                calT.getTime24h(),
+                calT.getCodigoP()
+        );
+        Conexion.getInstancia().agregar(ct);
+        return CT_PAGE_REDIRECT;
+    }    
 }

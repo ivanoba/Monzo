@@ -5,8 +5,6 @@
  */
 package com.monzoct.model;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -14,6 +12,7 @@ import java.util.Set;
  */
 public class Persona {
     //vic
+    private Integer codigoPersona;
     private String nick;
     private String nombre;
     private String password;
@@ -24,10 +23,10 @@ public class Persona {
     private double altura;
     private double bmi;
     private double bmr;
-    private Set calorieTracker = new HashSet(0);
     
     //Constructores
     public Persona() {
+        codigoPersona = 0;
         nick = "";
         nombre = "";
         password = "";
@@ -40,7 +39,9 @@ public class Persona {
         bmr = 0;
     }
     
-    public Persona(String nick, String nombre, String password, String objetivo, String sexo, int edad, double peso, double altura, double bmi, double bmr, Set calorieTracker) {
+    public Persona(Integer CodigoPersona, String nick, String nombre, String password, String objetivo, String sexo, int edad, double peso, double altura, double bmi, double bmr) {
+        this.codigoPersona = CodigoPersona;
+        this.nick = nick;
         this.nombre = nombre;
         this.password = password;
         this.objetivo = objetivo;
@@ -50,10 +51,13 @@ public class Persona {
         this.altura = altura;
         this.bmi = bmi;
         this.bmr = bmr;
-        this.calorieTracker = calorieTracker;
     }
     
     //Getters
+    public Integer getCodigoPersona() {
+        return codigoPersona;
+    }
+    
     public String getNick() {
         return nick;
     }
@@ -95,6 +99,10 @@ public class Persona {
     }
     
     //Setters
+    public void setCodigoPersona(Integer codigoPersona) {
+        this.codigoPersona = codigoPersona;
+    }
+    
     public void setNick(String nick) {
         this.nick = nick;
     }
@@ -133,13 +141,5 @@ public class Persona {
 
     public void setBmr(double bmr) {
         this.bmr = bmr;
-    }
-    
-    public Set getCalorieTracker() {
-        return this.calorieTracker;
-    }
-    
-    public void setCalorieTracker(Set calorieTracker) {
-        this.calorieTracker = calorieTracker;
     }
 }

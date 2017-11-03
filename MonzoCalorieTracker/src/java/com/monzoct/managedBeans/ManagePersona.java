@@ -11,14 +11,11 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import com.monzoct.model.Persona;
 import com.monzoct.model.CalorieTracker;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import javax.servlet.ServletException;
 /**
  *
  * @author M I C I F U S
@@ -27,6 +24,7 @@ import org.slf4j.LoggerFactory;
 @ManagedBean
 @SessionScoped
 public class ManagePersona implements Serializable {
+    public static final String USER_PAGE_REDIRECT = "templates/index.xhtml?faces-redirect=true";
     private Persona user;
     private CalorieTracker calTracker;
     
@@ -50,6 +48,26 @@ public class ManagePersona implements Serializable {
     
     //Metodos
     //se podra hacer void?
+    public String AddPersona() throws IOException, ServletException {
+        Persona usr;
+        usr = new Persona(
+                null,
+                user.getNick(),
+                user.getNombre(),
+                user.getPassword(),
+                user.getObjetivo(),
+                user.getSexo(),
+                user.getEdad(),
+                user.getPeso(),
+                user.getAltura(),
+                user.getBmi(),
+                user.getBmr()
+        );
+        Conexion.getInstancia().agregar(usr);
+        return USER_PAGE_REDIRECT;
+    }
+    
+    
     public double CalculoBMI() {
         double fooBMI;
         fooBMI = 0;

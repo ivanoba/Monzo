@@ -21,7 +21,7 @@ public class Comida {
     private double proteinas;
     private double sodio;
     private double azucar;
-    private CalorieTracker idCalorieTracker;
+    private CalorieTracker codigoTracker;
     
     
     //Constructores
@@ -36,7 +36,7 @@ public class Comida {
         proteinas = 0;
         sodio = 0;
         azucar = 0;
-        idCalorieTracker = new CalorieTracker();
+        codigoTracker = new CalorieTracker();
     }
     
     public Comida(Integer codigoComida, String nombreComida, String serving, double servingSize, int calorias, 
@@ -51,7 +51,7 @@ public class Comida {
         this.proteinas = proteinas;
         this.sodio = sodio;
         this.azucar = azucar;
-        this.idCalorieTracker = idCalorieTracker;
+        this.codigoTracker = idCalorieTracker;
     }
     
     //Getters
@@ -95,8 +95,8 @@ public class Comida {
         return azucar;
     }
 
-    public CalorieTracker getIdCalorieTracker() {
-        return idCalorieTracker;
+    public CalorieTracker getCodigoTracker() {
+        return codigoTracker;
     }
     
     //Setters
@@ -140,7 +140,7 @@ public class Comida {
         this.azucar = azucar;
     }
 
-    public void setIdCalorieTracker(CalorieTracker idCalorieTracker) {
-        this.idCalorieTracker = idCalorieTracker;
+    public void setCodigoTracker(CalorieTracker codigoTracker) {
+        this.codigoTracker = codigoTracker;
     }
 }
