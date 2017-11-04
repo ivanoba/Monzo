@@ -78,4 +78,14 @@ public class ManageCalorieTracker implements Serializable {
         Conexion.getInstancia().agregar(ct);
         return CT_PAGE_REDIRECT;
     }    
+    
+    public String ModificarCalorieTracker() {
+        
+        return CT_PAGE_REDIRECT;
+    }
+    
+    public String AnularCalorieTracker() {
+        
+        return CT_PAGE_REDIRECT;
+    }
 }

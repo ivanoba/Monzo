@@ -74,14 +74,15 @@ public class ManageComida {
         Conexion.getInstancia().agregar(c);
         return null;
     }
-      
+     
+    //tambien en vez de void String
     public void ModificarComida() {
         //MODIFICAR BD
         
     }
     
-    //public double AnularComida() {
+    public void AnularComida() {
         //anular de bd
         
-   //}
+   }
 }

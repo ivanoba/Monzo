@@ -89,7 +89,7 @@ public class ManagePersona implements Serializable {
         return fooBMR;
     }
     
-    public String getCategoriaBMI() {
+    public String CategoriaBMI() {
         String categoriaBMI;
         categoriaBMI = "";
         double bmi;

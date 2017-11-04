@@ -47,10 +47,10 @@
                     <h:outputLabel value="Ejercicio"></h:outputLabel><img class="symbol" src="../../resources/img/equal.svg" alt="equal sign"/>
                     <h:outputLabel value="Remaining"></h:outputLabel>
             
-                    <h:outputLabel id="budget" value="#{manageCalorieTracker.calT.budget}"></h:outputLabel><span></span>
-                    <h:outputLabel value="#{manageCalorieTracker.calT.totalCal}"></h:outputLabel><span></span>          
-                    <h:outputLabel value="#{manageCalorieTracker.calT.ejercicio}"></h:outputLabel><span></span>           
-                    <h:outputLabel value="#{manageCalorieTracker.calT.remaining}"></h:outputLabel>
+                    <h:outputText id="budget" value="#{manageCalorieTracker.calT.budget}"></h:outputText><span></span>
+                    <h:outputText value="#{manageCalorieTracker.calT.totalCal}"></h:outputText><span></span>          
+                    <h:outputText value="#{manageCalorieTracker.calT.ejercicio}"></h:outputText><span></span>           
+                    <h:outputText value="#{manageCalorieTracker.calT.remaining}"></h:outputText>
                 </h:panelGrid>
             </div>
             <br/>
@@ -65,6 +65,22 @@
                 </h:commandButton>
             </div>
             
+            <hr class="pill"/>
+            <!-- AQUI EN EL LOG VA EL LISTADO DE COMIDAS -->
+            <div>
+                <h2>LOG DE COMIDAS</h2><br/>
+                <h:panelGrid columns="11" cellpadding="3" id="logComidas">
+                    <h:outputLabel value="Nombre de la Comida"></h:outputLabel>
+                    <h:outputLabel value="Porción"></h:outputLabel>
+                    <h:outputLabel value="Tamaño Porción"></h:outputLabel>
+                    <h:outputLabel value="Calorías"></h:outputLabel>
+                    <h:outputLabel value="Carbohidratos"></h:outputLabel>
+                    <h:outputLabel value="Proteínas"></h:outputLabel>
+                    <h:outputLabel value="Grasas"></h:outputLabel>
+                    <h:outputLabel value="Sodio"></h:outputLabel>
+                    <h:outputLabel value="Azúcar"></h:outputLabel>
+                </h:panelGrid>
+            </div>
             
             <!-- modal -->
             <div class="modal fade" id="modal" role="dialog">
