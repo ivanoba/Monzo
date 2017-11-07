@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 4, 2017 10:38:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monzo.model.Comida" table="comida" catalog="db_monzo_ct" optimistic-lock="version">
+        <id name="codigoComida" type="java.lang.Integer">
+            <column name="codigoComida" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="calorietracker" class="com.monzo.model.Calorietracker">
+            <column name="codigoTracker" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true" />
+        </property>
+        <property name="serving" type="string">
+            <column name="serving" length="50" not-null="true" />
+        </property>
+        <property name="servingSize" type="double">
+            <column name="servingSize" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="calorias" type="double">
+            <column name="calorias" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="carbohidratos" type="double">
+            <column name="carbohidratos" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="proteinas" type="double">
+            <column name="proteinas" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="grasas" type="double">
+            <column name="grasas" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="sodio" type="double">
+            <column name="sodio" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="azucar" type="double">
+            <column name="azucar" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

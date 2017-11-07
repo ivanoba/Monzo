@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 4, 2017 10:38:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monzo.model.Persona" table="persona" catalog="db_monzo_ct" optimistic-lock="version">
+        <id name="codigoPersona" type="java.lang.Integer">
+            <column name="codigoPersona" />
+            <generator class="increment" />
+        </id>
+        <property name="nick" type="string">
+            <column name="nick" length="50" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="50" not-null="true" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="50" not-null="true" />
+        </property>
+        <property name="objetivo" type="string">
+            <column name="objetivo" length="50" not-null="true" />
+        </property>
+        <property name="edad" type="int">
+            <column name="edad" not-null="true" />
+        </property>
+        <property name="peso" type="double">
+            <column name="peso" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="altura" type="double">
+            <column name="altura" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="bmi" type="double">
+            <column name="bmi" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="bmr" type="double">
+            <column name="bmr" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="calorietrackers" table="calorietracker" inverse="true" lazy="false" >
+            <key>
+                <column name="codigoP" not-null="true" />
+            </key>
+            <one-to-many class="com.monzo.model.Calorietracker" />
+        </set>
+    </class>
+</hibernate-mapping>

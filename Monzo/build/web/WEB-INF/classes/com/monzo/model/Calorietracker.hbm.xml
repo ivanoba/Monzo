@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 4, 2017 10:38:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monzo.model.Calorietracker" table="calorietracker" catalog="db_monzo_ct" optimistic-lock="version">
+        <id name="codigoTracker" type="java.lang.Integer">
+            <column name="codigoTracker" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="persona" class="com.monzo.model.Persona" >
+            <column name="codigoP" not-null="true" />
+        </many-to-one>
+        <property name="budget" type="double">
+            <column name="budget" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="totalCal" type="double">
+            <column name="totalCal" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="ejercicio" type="double">
+            <column name="ejercicio" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="remaining" type="double">
+            <column name="remaining" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="time24h" type="date">
+            <column name="time24h" length="10" not-null="true" />
+        </property>
+        <set name="comidas" table="comida" inverse="true" lazy="false" >
+            <key>
+                <column name="codigoTracker" not-null="true" />
+            </key>
+            <one-to-many class="com.monzo.model.Comida" />
+        </set>
+    </class>
+</hibernate-mapping>

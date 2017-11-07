@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta name="viewport" content="width=device-width,initial-scalw=1.0,user-scalable=no"/>
+        <title>Monzo Calorie Tracker</title>
+        <link rel="stylesheet" href="resources/css/estilos.css"/>
+    </h:head>
+    <h:body>
+        <header>
+            <img src="resources/img/Monzo-logo2.svg" alt="Monzo Logo"/>
+            <h1>Monzo</h1>
+            <h:outputLink id="linkRegistro" value="templates/registro/registro.xhtml">¿Eres nuevo? Reg&iacute;strate</h:outputLink>
+        </header>
+        
+        <section id="contenedor">
+            <h2>Login</h2>
+        
+            <img class="login-img" src="resources/img/Monzo-logo2.svg" alt="Logo"/><br/>
+            <img class="login-img"  src="resources/img/down-arrow.svg" alt=""/>
+        
+            <h:form id="login-form" class="form">
+                <p>Ingresa tus credenciales</p>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="username">Nombre de usuario: </h:outputLabel>
+                    <h:inputText id="username" value="#{manageLogin.userId}" required="true" requiredMessage="Este campo es obligatorio"></h:inputText>
+                    <h:message for="username"></h:message>
+
+                    <h:outputLabel for="password">Password: </h:outputLabel>
+                    <h:inputSecret id="password" value="#{manageLogin.userPassword}" required="true" requiredMessage="Este campo es obligatorio"></h:inputSecret>
+                    <h:message for="password"></h:message>
+                </h:panelGrid>
+                <h:commandButton class="boton" value="Entrar" action="#{manageLogin.login()}"></h:commandButton>
+            </h:form>
+        </section>
+        
+    </h:body>
+</html>
+

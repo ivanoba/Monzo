@@ -1,0 +1,260 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 31, 2017, 11:37:14 PM
+    Author     : M I C I F U S
+*/
+body {
+    background-color: white;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 16px;
+    color: black;
+    overflow-x: hidden;
+}
+
+/*header*/
+header {
+    background-color: whitesmoke;
+    box-shadow: black 2px 2px 10px;
+    width: 100%;
+    padding: 0.3em;
+    padding-left: 1em; 
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+header img {
+    width: 5%;
+    float: left;
+}
+
+header nav ul li {
+    float: right;
+    list-style-type: none;
+    padding-right: 3%;
+    margin-top: 3vh;
+    letter-spacing: 1.2px;
+    color: black;
+}
+
+header nav ul li:first-child {
+    margin-right: 4%;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+/*texto*/
+h1 {
+    letter-spacing: 0.2em;
+    float: left;
+    margin-left: 1em;
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+
+h3 {
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+p {
+    text-align: center;
+}
+
+.numero {
+    font-size: 3em;
+    font-weight: bolder;
+    color: coral;
+}
+
+#login-form p {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/*hyperlinks*/
+#linkRegistro {
+    float: right;
+    margin-top: 1em;
+    margin-right: 3%;
+    padding: 1em;
+    color: black;
+    text-decoration: none;
+}
+
+#linkRegistro:hover {
+    color: oldlace;
+    background-color: #29bc99;
+    border-radius: 15px;
+}
+
+
+/*contenedores*/
+#contenedor {
+    margin-top: 8%;
+    animation: rebote 2s;
+}
+
+.login-img {
+    display: block;
+    margin: auto;
+    width: 10%;
+    animation: salto 1.5s infinite;
+}
+
+.summary {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+#trackerGrid {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+.symbol {
+    width: 13%;
+}
+
+#set-botones {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+/*Forms*/
+#addFood form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
+}
+
+.form {
+    margin: auto;
+    width: 25%;
+    padding: 2%;
+}
+
+#registro-form {
+    
+}
+
+input[type=text], input[type=password], select {
+    font-family: 'Helvetiva', sans-serif;
+    font-size: 1em;
+    border: 2px solid #29bc99;
+    width: 20em;
+    height: 2em;
+    margin-bottom: 1.2em;
+    border-radius: 4px;
+}
+
+input[type=text]:focus,input[type=password]:focus, select:focus {
+    border: 2px solid crimson;
+    color: chocolate;
+}
+
+/*botones, extras*/
+.boton {
+    height: 3em;
+    padding: 0.5em;
+    margin: auto;
+    display: block;
+    width: 40%;
+    border-radius: 7px;
+    background: crimson;
+    color: whitesmoke;
+    font-weight: bold;
+    font-family: Helvetiva, sans-serif;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+
+.boton:hover {
+    background-color: #a9063b;
+    box-shadow: black 2px 2px;
+}
+
+#boton-comida {
+    float: left;
+    display: inline-block;
+    margin: 1em;
+}
+
+#boton-ejercicio {
+    background: #4375B8;
+    float: right;
+    margin: 1em;
+}
+
+#boton-ejercicio:hover {
+    background: #4330c1;
+}
+
+hr {
+    border: 0;
+    margin: 1.35em auto;
+    max-width: 100%;
+    background-position: 50%;
+    box-sizing: border-box;
+}
+
+.pill {
+    height: 0px;
+    border-radius: 2px;
+    background-color: teal;
+    border: 2px solid teal;
+    width: 85%;
+}
+
+
+
+/*animaciones*/
+@keyframes salto {
+    0% {
+        transform: translateY(0px);
+    }
+    25%; {
+        transform: translateY(8px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes rebote {
+  0% {
+    margin-top: 200%;
+  }
+  60% {
+    margin-top: -15%;
+  }
+  100% {
+    margin-top: 0%;
+  }
+}
