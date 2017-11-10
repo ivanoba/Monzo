@@ -17,6 +17,9 @@ import javax.faces.context.FacesContext;
 import com.monzo.model.Persona;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +40,31 @@ public class ManageLogin implements Serializable {
     private Comida currentComida;
     private Persona currentUser;
     private Calorietracker currentTracker;
+    
+    FacesContext context = FacesContext.getCurrentInstance();
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sesion = request.getSession(true);
 
     public String login() {
         currentUser = find(userId, userPassword);
 
         if (currentUser != null) {
             LOGGER.info("login successful for '{}'", userId);
+           // List<Object> pp = Conexion.getInstancia().hacerConsulta("from Calorietracker where codigoP ="+userId);
+            
+            List<Object> lista = null;  
+            lista = Conexion.getInstancia().hacerConsulta("From Calorietracker WHERE codigoP ="+currentUser.getCodigoPersona());
+           
+            if(!lista.isEmpty()) {
+                currentTracker = (Calorietracker)lista.get(0);
+                //currentTracker.getBudget();
+                sesion.setAttribute("budget", currentTracker.getBudget());
+            }
+            
+//            List<Object> pp = Conexion.getInstancia().hacerConsulta("From Producto " + " where codigo = '" + getCodigo() + "'");
+//            Producto pr = (Producto) pp.get(0);
+//            Producto p = (Producto) Conexion.getInstancia().Buscar(Producto.class, pr.getIdPro());
+//            listav = (ArrayList) sesion.getAttribute("listaventas");
             return DASHBOARD_PAGE_REDIRECT;
         } else {
             LOGGER.info("login failed for '{}'", userId);

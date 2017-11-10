@@ -15,8 +15,11 @@ import com.monzo.controller.ManageComida;
 import java.io.Serializable;
 import java.util.Date;
 import com.monzo.model.Calorietracker;
+import com.monzo.model.Comida;
 import com.monzo.model.Persona;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,13 +40,17 @@ public class ManageCalorieTracker implements Serializable {
     HttpSession sesion = request.getSession(true);
     
     private Calorietracker calT;
+    private Comida c;
+    
     
     public ManageCalorieTracker() {
         calT = new Calorietracker();
+        c = new Comida();
     }
     
-    public ManageCalorieTracker(Calorietracker calT) {
+    public ManageCalorieTracker(Calorietracker calT, Comida c) {
         this.calT = calT;
+        this.c = c;
     }
     
     public Calorietracker getCalT() {
@@ -53,39 +60,62 @@ public class ManageCalorieTracker implements Serializable {
     public void setCalT(Calorietracker calT) {
         this.calT = calT;
     }
+
+    public Comida getC() {
+        return c;
+    }
+
+    public void setC(Comida c) {
+        this.c = c;
+    }
     
-    //Metodos
-    public String CalorieTracker() {
+    
+    //M E T O D O S
+    public void CaloriasTotales() {
+        //Hacer consulta de comida o persona?
+        double fooTotalCal;
+        fooTotalCal = 0;
+        fooTotalCal += c.getCalorias();
+        calT.setTotalCal(fooTotalCal);
+        sesion.setAttribute("totalCalorias", calT.getTotalCal());
+    }
+    
+    
+    public void ObtenerRemainder() {
         double fooRemaining;
         fooRemaining = 0;
         fooRemaining = calT.getBudget() - calT.getTotalCal() + calT.getEjercicio();
         calT.setRemaining(fooRemaining);
-
-        return CT_PAGE_REDIRECT;
     }
-    
-    
-    
-    public String AddCalorieTracker() throws IOException, ServletException {    
-//        Calorietracker ct;
-//        ct = new Calorietracker(
-//                null,
-//                calT.getBudget(),
-//                calT.getTotalCal(),
-//                calT.getEjercicio(),
-//                calT.getRemaining(),
-//                calT.getTime24h(),
-//                calT.getComidas()
-//        );
-       // Conexion.getInstancia().agregar(ct);
-        return CT_PAGE_REDIRECT;
-    }    
     
     public String AddEjercicio() throws IOException, ServletException {
+        //add a bd
         
-        
+        //add a view
+        double fooExercise;
+        fooExercise = 0;
+        fooExercise += calT.getEjercicio();
+        calT.setEjercicio(fooExercise);
+        sesion.setAttribute("totalEjercicio", calT.getEjercicio()); 
         return CT_PAGE_REDIRECT;
     }
+    
+    
+    public String HacerTracker() {
+        if(calT.getBudget() > calT.getRemaining()) {  
+            sesion.setAttribute("remainder", calT.getRemaining());
+        } else {
+            sesion.setAttribute("remainder", "Te has pasado");
+        }
+        return null;
+    }
+    
+    public String AddCalorieTracker() throws IOException, ServletException {  
+        
+        
+
+        return CT_PAGE_REDIRECT;
+    }    
     
     
     public String ModificarCalorieTracker() {

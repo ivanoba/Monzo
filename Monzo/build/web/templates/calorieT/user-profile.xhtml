@@ -42,16 +42,16 @@
             <hr class="pill"/>
             <div id="calTracker">
                 <h2>TRACKER</h2><br/>
-                <h:panelGrid columns="7" cellpadding="10" id="trackerGrid">  
+                <h:panelGrid columns="7" cellpadding="1" id="trackerGrid">  
                     <h:outputLabel value="Budget"></h:outputLabel><img class="symbol" src="../../resources/img/remove.svg" alt="minus sign"/>
                     <h:outputLabel value="Comida"></h:outputLabel><img class="symbol" src="../../resources/img/add.svg" alt="add sign"/>
-                    <h:outputLabel value="Ejercicio"></h:outputLabel><img class="symbol" src="../../resources/img/equal.svg" alt="equal sign"/>
+                    <h:outputLabel value="Ejercicio"></h:outputLabel><img class="symbol" id="last" src="../../resources/img/equal.svg" alt="equal sign"/>
                     <h:outputLabel value="Remaining"></h:outputLabel>
 
-                    <h:outputLabel id="budget">1417.97</h:outputLabel><span></span>
-                    <h:outputLabel >350</h:outputLabel><span></span>          
-                    <h:outputLabel >150</h:outputLabel><span></span>           
-                    <h:outputLabel >1217</h:outputLabel>
+                    <h:outputLabel value="${manageLogin.currentTracker.budget}"></h:outputLabel><span></span>
+                    <h:outputLabel value="${totalCalorias}"></h:outputLabel><span></span>          
+                    <h:outputLabel value="${totalEjercicio}"></h:outputLabel><span></span>           
+                    <h:outputLabel value="${remainder}"></h:outputLabel>
                 </h:panelGrid>
             </div>
             <br/>
