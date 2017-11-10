@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import com.monzo.controller.ManagePersona;
 import com.monzo.controller.ManageComida;
+import com.monzo.controller.ManageLogin;
 import java.io.Serializable;
 import java.util.Date;
 import com.monzo.model.Calorietracker;
@@ -33,7 +34,7 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @SessionScoped
 public class ManageCalorieTracker implements Serializable {
-    private static final String CT_PAGE_REDIRECT = "templates/calorieT/user-profile.xhtml?faces-redirect=true";
+    private static final String CT_PAGE_REDIRECT = "/templates/calorieT/user-profile.xhtml?faces-redirect=true";
     
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -41,16 +42,19 @@ public class ManageCalorieTracker implements Serializable {
     
     private Calorietracker calT;
     private Comida c;
+    private Double totalEjercicio;
     
     
     public ManageCalorieTracker() {
         calT = new Calorietracker();
         c = new Comida();
+        totalEjercicio = 0.0;
     }
     
-    public ManageCalorieTracker(Calorietracker calT, Comida c) {
+    public ManageCalorieTracker(Calorietracker calT, Comida c, double totalEjercicio) {
         this.calT = calT;
         this.c = c;
+        this.totalEjercicio = totalEjercicio;
     }
     
     public Calorietracker getCalT() {
@@ -68,6 +72,15 @@ public class ManageCalorieTracker implements Serializable {
     public void setC(Comida c) {
         this.c = c;
     }
+
+    public Double getTotalEjercicio() {
+        return totalEjercicio;
+    }
+
+    public void setTotalEjercicio(Double totalEjercicio) {
+        this.totalEjercicio = totalEjercicio;
+    }
+    
     
     
     //M E T O D O S
@@ -89,14 +102,18 @@ public class ManageCalorieTracker implements Serializable {
     }
     
     public String AddEjercicio() throws IOException, ServletException {
-        //add a bd
-        
-        //add a view
         double fooExercise;
-        fooExercise = 0;
-        fooExercise += calT.getEjercicio();
-        calT.setEjercicio(fooExercise);
-        sesion.setAttribute("totalEjercicio", calT.getEjercicio()); 
+        fooExercise = this.getTotalEjercicio() + ManageLogin.currentTracker.getEjercicio();
+        
+        ManageLogin.currentTracker.setEjercicio(getTotalEjercicio());
+        Conexion.getInstancia().modificar(ManageLogin.currentTracker);
+          
+//        double fooExercise;
+//        fooExercise = 0;
+//        fooExercise += ManageLogin.currentTracker.getEjercicio();
+//        ManageLogin.currentTracker.setEjercicio(fooExercise);
+//        Conexion.getInstancia().modificar(ManageLogin.currentTracker);
+        sesion.setAttribute("totalEjercicio", ManageLogin.currentTracker.getEjercicio()); 
         return CT_PAGE_REDIRECT;
     }
     

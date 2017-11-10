@@ -13,6 +13,7 @@ import javax.inject.Named;
 import com.monzo.model.Calorietracker;
 import com.monzo.model.Comida;
 import com.monzo.model.Persona;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +39,7 @@ public class ManageComida {
     private Comida comida;
     private Calorietracker calT;
     private Persona person;
+    
     
     public ManageComida() {
         comida = new Comida();
@@ -83,4 +85,6 @@ public class ManageComida {
         //anular de bd
         
    }
+    
+
 }

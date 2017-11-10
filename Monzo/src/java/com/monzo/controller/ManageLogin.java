@@ -15,8 +15,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import com.monzo.model.Persona;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,6 +42,11 @@ public class ManageLogin implements Serializable {
     private Comida currentComida;
     private Persona currentUser;
     public  static Calorietracker currentTracker;
+    private List<Object> food = Conexion.getInstancia().hacerConsulta("From Comida");
+    private List<Object> exercise = Conexion.getInstancia().hacerConsulta("From Calorietracker");
+    private double caloriasTot;
+    private double ejercicioTot;
+    
     
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -83,6 +90,19 @@ public class ManageLogin implements Serializable {
             return DASHBOARD_PAGE_REDIRECT;
         }
         return null;
+    }
+    
+    public void cargarListas() throws IOException {
+        
+        ArrayList<Comida> f = (ArrayList) food;
+        ArrayList<Calorietracker> ej = (ArrayList) exercise;
+        caloriasTot = 0;
+        ejercicioTot = 0;
+        for(int i = 0; i < food.size(); i++) {
+            caloriasTot += f.get(i).getCalorias();
+            ejercicioTot += ej.get(i).getEjercicio();
+        }
+        sesion.setAttribute("listaComida", caloriasTot);
     }
 
     private Persona find(String userId, String password) {
