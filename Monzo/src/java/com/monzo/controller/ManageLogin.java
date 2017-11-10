@@ -39,7 +39,7 @@ public class ManageLogin implements Serializable {
     private String userPassword;
     private Comida currentComida;
     private Persona currentUser;
-    private Calorietracker currentTracker;
+    public  static Calorietracker currentTracker;
     
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -50,21 +50,11 @@ public class ManageLogin implements Serializable {
 
         if (currentUser != null) {
             LOGGER.info("login successful for '{}'", userId);
-           // List<Object> pp = Conexion.getInstancia().hacerConsulta("from Calorietracker where codigoP ="+userId);
-            
-            List<Object> lista = null;  
+            List<Object> lista;  
             lista = Conexion.getInstancia().hacerConsulta("From Calorietracker WHERE codigoP ="+currentUser.getCodigoPersona());
-           
             if(!lista.isEmpty()) {
                 currentTracker = (Calorietracker)lista.get(0);
-                //currentTracker.getBudget();
-                sesion.setAttribute("budget", currentTracker.getBudget());
             }
-            
-//            List<Object> pp = Conexion.getInstancia().hacerConsulta("From Producto " + " where codigo = '" + getCodigo() + "'");
-//            Producto pr = (Producto) pp.get(0);
-//            Producto p = (Producto) Conexion.getInstancia().Buscar(Producto.class, pr.getIdPro());
-//            listav = (ArrayList) sesion.getAttribute("listaventas");
             return DASHBOARD_PAGE_REDIRECT;
         } else {
             LOGGER.info("login failed for '{}'", userId);
@@ -100,8 +90,6 @@ public class ManageLogin implements Serializable {
         result = Conexion.getInstancia().autenticarPersona(userId, password);
         return result;
     }
-
-   
 
     public String getUserId() {
         return userId;

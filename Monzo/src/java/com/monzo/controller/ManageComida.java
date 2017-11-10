@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @RequestScoped
 public class ManageComida {
-    private static final String COMIDA_PAGE_REDIRECT = "templates/calorieT/user-profile.xhtml?face-redirect=true";
+    private static final String COMIDA_PAGE_REDIRECT = "/templates/calorieT/user-profile.xhtml?face-redirect=true";
     public static ArrayList<Comida> listaComida;
     public static ArrayList listaC;
     //public static List<Object> fchead;
@@ -68,42 +68,9 @@ public class ManageComida {
         //List <Object> tracker = Conexion.getInstancia().hacerConsulta("From CalorieTracker");// where  Time24h = "+ ManageLogin.dateFormat);
         //Calorietracker ct;
         //ct = (Calorietracker) tracker.get(0);
-        
-        List <Object> u = Conexion.getInstancia().hacerConsulta("From Persona where nick = '" + ManageLogin.userId + "'");
-        Persona us;
-        us = (Persona) u.get(0);
-        Date date = new Date();
-        
-        //if(tracker.size() == 0) {
-            Calorietracker ctr = new Calorietracker(
-                    null,
-                    us,
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0,
-                    date
-            );
-            Conexion.getInstancia().agregar(ctr);
-//            
-//            Comida comidas = new Comida(
-//                null,
-//                ct,
-//                comida.getNombre(),
-//                comida.getServing(),
-//                comida.getServingSize(),
-//                comida.getCalorias(),
-//                comida.getCarbohidratos(),
-//                comida.getProteinas(),
-//                comida.getGrasas(),
-//                comida.getSodio(),
-//                comida.getAzucar()
-//            );
-        //}
-        
-        
-        //Conexion.getInstancia().agregar(comidas);
-        return USER_PAGE_REDIRECT;
+        comida.setCalorietracker(ManageLogin.currentTracker);
+        Conexion.getInstancia().agregar(comida);
+        return COMIDA_PAGE_REDIRECT;
     }
      
     //tambien en vez de void String
