@@ -164,6 +164,30 @@ public class Conexion {
         }
         return user;
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Comida> getComidas(Integer codigo) {
+        Session session = this.getSession();
+        List<Comida> listado;
+        session.beginTransaction();
+        listado = session.createQuery("From Comida WHERE codigoTracker = " + codigo).list();
+        session.getTransaction().commit();
+        return listado;
+    }
+    
+    public Double getTotalComida(Integer codigo) {
+        Double total;
+        total = 0.0;
+        Session session = this.getSession();
+        List<Double> listado;
+        session.beginTransaction();
+        listado = session.createQuery("SELECT SUM(calorias) as total From Comida WHERE codigoTracker = " + codigo).list();
+        session.getTransaction().commit();
+         if(!listado.isEmpty()) {
+            total = listado.get(0);
+        }
+        return total;
+    }
 
 
     

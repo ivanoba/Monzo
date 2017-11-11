@@ -31,7 +31,8 @@ import javax.servlet.http.HttpSession;
 @RequestScoped
 public class ManageComida {
     private static final String COMIDA_PAGE_REDIRECT = "/templates/calorieT/user-profile.xhtml?face-redirect=true";
-    public static ArrayList<Comida> listaComida;
+    private List<Comida> listaComida;
+    private Double totalComida;
     public static ArrayList listaC;
     //public static List<Object> fchead;
     //public static List<Object> fcbody;
@@ -39,6 +40,7 @@ public class ManageComida {
     private Comida comida;
     private Calorietracker calT;
     private Persona person;
+    private Double remainder;
     
     
     public ManageComida() {
@@ -47,9 +49,25 @@ public class ManageComida {
         person = new Persona();
     }
     
+    public List<Comida> getListaComida() {
+        listaComida = Conexion.getInstancia().getComidas(ManageLogin.currentTracker.getCodigoTracker());
+        return listaComida;
+    }
+    
     public ManageComida(Comida comida, Calorietracker calT) {
         this.comida = comida;
         this.calT = calT;
+    }
+    
+    public Double getRemainder() {
+        double remainder;
+        remainder = (ManageLogin.currentTracker.getBudget() - this.getTotalComida()) + ManageLogin.currentTracker.getEjercicio();
+        return remainder;
+    }
+    
+    public Double getTotalComida() {
+        totalComida = Conexion.getInstancia().getTotalComida(ManageLogin.currentTracker.getCodigoTracker());
+        return totalComida;
     }
     
     public Comida getComida() {
@@ -72,6 +90,7 @@ public class ManageComida {
         //ct = (Calorietracker) tracker.get(0);
         comida.setCalorietracker(ManageLogin.currentTracker);
         Conexion.getInstancia().agregar(comida);
+        comida = new Comida();
         return COMIDA_PAGE_REDIRECT;
     }
      

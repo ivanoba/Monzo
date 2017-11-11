@@ -49,9 +49,9 @@
                     <h:outputLabel value="Remaining"></h:outputLabel>
 
                     <h:outputLabel value="${manageLogin.currentTracker.budget}"></h:outputLabel><span></span>
-                    <h:outputLabel value="${manageComida.comida.calorias}"></h:outputLabel><span></span>          
+                    <h:outputLabel value="${manageComida.totalComida}"></h:outputLabel><span></span>          
                     <h:outputLabel value="${manageLogin.currentTracker.ejercicio}"></h:outputLabel><span></span>           
-                    <h:outputLabel value="${remainder}"></h:outputLabel>
+                    <h:outputLabel value="${manageComida.remainder}"></h:outputLabel>
                 </h:panelGrid>
             </div>
             <br/>
@@ -71,12 +71,12 @@
             <hr class="pill"/>
             <div>
                 <h2>LOG DE COMIDAS</h2><br/>
-                <h:dataTable value="" id="foodLog" cellpadding="1">
+                <h:dataTable var="item" value="#{manageComida.listaComida}" id="foodLog" cellpadding="1">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Nombre Comida"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.nombre}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.nombre}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     
@@ -84,56 +84,56 @@
                         <f:facet name="header">
                             <h:outputText value="Porción"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.serving}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.serving}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Cantidad Porción"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.servingSize}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.servingSize}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Calorías"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.calorias}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.calorias}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Carbohidratos"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.carbohidratos}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.carbohidratos}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Proteínas"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.proteinas}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.proteinas}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Grasas"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.grasas}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.grasas}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Sodio"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.sodio}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.sodio}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Azucar"></h:outputText>
                         </f:facet>
-                        <h:outputText value="#{manageComida.comida.azucar}" class="foodColumn"></h:outputText>
+                        <h:outputText value="#{item.azucar}" class="foodColumn"></h:outputText>
                     </h:column>
                     
                 </h:dataTable><br/>

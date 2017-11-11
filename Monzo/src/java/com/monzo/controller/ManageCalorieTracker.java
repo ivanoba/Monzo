@@ -21,6 +21,7 @@ import com.monzo.model.Persona;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpSession;
  */
 @Named(value = "manageCalorieTracker")
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ManageCalorieTracker implements Serializable {
     private static final String CT_PAGE_REDIRECT = "/templates/calorieT/user-profile.xhtml?faces-redirect=true";
     
@@ -103,17 +104,11 @@ public class ManageCalorieTracker implements Serializable {
     
     public String AddEjercicio() throws IOException, ServletException {
         double fooExercise;
-        fooExercise = this.getTotalEjercicio() + ManageLogin.currentTracker.getEjercicio();
-        
-        ManageLogin.currentTracker.setEjercicio(getTotalEjercicio());
+        fooExercise = totalEjercicio + ManageLogin.currentTracker.getEjercicio();
+        ManageLogin.currentTracker.setEjercicio(fooExercise);
         Conexion.getInstancia().modificar(ManageLogin.currentTracker);
-          
-//        double fooExercise;
-//        fooExercise = 0;
-//        fooExercise += ManageLogin.currentTracker.getEjercicio();
-//        ManageLogin.currentTracker.setEjercicio(fooExercise);
-//        Conexion.getInstancia().modificar(ManageLogin.currentTracker);
-        sesion.setAttribute("totalEjercicio", ManageLogin.currentTracker.getEjercicio()); 
+        totalEjercicio = 0.0;
+        setTotalEjercicio(0.0);
         return CT_PAGE_REDIRECT;
     }
     
